@@ -18,7 +18,9 @@ public class SceneLoader : MonoBehaviour
     // Load the very first scene in our game. Index 0 is the start game menu scene.
     public void LoadStartScene()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
+        if(!FindObjectOfType<GameSession>()) { return; }
+        FindObjectOfType<GameSession>().ResetGame();
     }
 
     // Loads the Game Over scene.
@@ -31,7 +33,7 @@ public class SceneLoader : MonoBehaviour
     IEnumerator WaitAndLoad()
     {
         yield return new WaitForSeconds(delaySceneTime);
-        SceneManager.LoadScene("Game Over");
+        SceneManager.LoadScene(2);
     }
 
     // Allow the play the quit the game and close the applications.
